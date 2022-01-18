@@ -14,6 +14,8 @@ public sealed class DoorController : MonoBehaviour {
 	public Transform door;
 	public int openTimes = -1;
 	public float transitionTime = .5f;
+	public Vector3 openPosition;
+	public Vector3 closePosition;
 
 	[Header("Runtime")]
 	[SerializeField]
