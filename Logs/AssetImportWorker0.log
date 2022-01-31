@@ -973,3 +973,101 @@ System memory in use after: 240.2 MB.
 Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3958.
 Total: 5.876152 ms (FindLiveObjects: 0.455575 ms CreateObjectMapping: 0.196529 ms MarkObjects: 3.056887 ms  DeleteObjects: 2.165857 ms)
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008844 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.73 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.733 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3059 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 243.1 MB.
+System memory in use after: 240.5 MB.
+
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3962.
+Total: 5.893551 ms (FindLiveObjects: 0.513786 ms CreateObjectMapping: 0.168092 ms MarkObjects: 2.985936 ms  DeleteObjects: 2.224614 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 331.509295 seconds.
+  path: Assets/Textures/Floor.png
+  artifactKey: Guid(523b2cda3768c4e8daffb9ff15226dfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Floor.png using Guid(523b2cda3768c4e8daffb9ff15226dfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74ad1a73f5ace1eae203b1184375db4c') in 0.911142 seconds
+  Import took 0.918092 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003211 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.85 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.703 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3059 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 247.6 MB.
+System memory in use after: 245.1 MB.
+
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3968.
+Total: 6.000314 ms (FindLiveObjects: 0.443974 ms CreateObjectMapping: 0.198764 ms MarkObjects: 3.001963 ms  DeleteObjects: 2.354376 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.676710 seconds.
+  path: Assets/Textures/Brick Wall.png
+  artifactKey: Guid(c07cc4c5a45d54b7c8d2a31090e302fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Brick Wall.png using Guid(c07cc4c5a45d54b7c8d2a31090e302fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cfdb9814239f6fcbebaf1794785cc53') in 0.044349 seconds
+  Import took 0.051091 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/Textures/Steel Wall.png
+  artifactKey: Guid(4487e2374a1c04d8786ab809185a8912) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Steel Wall.png using Guid(4487e2374a1c04d8786ab809185a8912) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81c034741d9405de15787beac44d015f') in 0.008186 seconds
+  Import took 0.013783 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.774157 seconds.
+  path: Assets/Textures/Brick Wall.png
+  artifactKey: Guid(c07cc4c5a45d54b7c8d2a31090e302fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Brick Wall.png using Guid(c07cc4c5a45d54b7c8d2a31090e302fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cfdb9814239f6fcbebaf1794785cc53') in 0.007199 seconds
+  Import took 0.012990 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002910 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.667 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3059 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 248.0 MB.
+System memory in use after: 245.4 MB.
+
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 3973.
+Total: 6.361200 ms (FindLiveObjects: 0.452239 ms CreateObjectMapping: 0.197592 ms MarkObjects: 3.320113 ms  DeleteObjects: 2.389777 ms)
+
