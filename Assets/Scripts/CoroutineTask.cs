@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CoroutineTask {
 
+	public static readonly YieldInstruction WaitForNextFrame = new YieldInstruction();
+
 	public readonly MonoBehaviour monoBehaviour;
 	public CoroutineTaskType coroutineTaskType;
 

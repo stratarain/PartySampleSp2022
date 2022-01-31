@@ -12,45 +12,45 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-52281
+53485
 Successfully changed project path to: /Users/williamxie/Documents/GitHub/PartySampleSp2022
 /Users/williamxie/Documents/GitHub/PartySampleSp2022
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 116.71 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 88.39 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.10f1 (297d780c91bc)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Unity.app/Contents/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path /Users/williamxie/Documents/GitHub/PartySampleSp2022/Assets
 GfxDevice: creating device client; threaded=0
-2022-01-17 18:38:54.733 Unity[17207:1091346] Color LCD preferred device: AMD Radeon Pro 5500M (high power)
-2022-01-17 18:38:54.733 Unity[17207:1091346] Metal devices available: 2
-2022-01-17 18:38:54.733 Unity[17207:1091346] 0: AMD Radeon Pro 5500M (high power)
-2022-01-17 18:38:54.733 Unity[17207:1091346] 1: Intel(R) UHD Graphics 630 (low power)
-2022-01-17 18:38:54.733 Unity[17207:1091346] Forcing user selected device: AMD Radeon Pro 5500M (high power)
+2022-01-26 14:17:08.036 Unity[55783:3970004] Color LCD preferred device: AMD Radeon Pro 5500M (high power)
+2022-01-26 14:17:08.036 Unity[55783:3970004] Metal devices available: 2
+2022-01-26 14:17:08.036 Unity[55783:3970004] 0: AMD Radeon Pro 5500M (high power)
+2022-01-26 14:17:08.036 Unity[55783:3970004] 1: Intel(R) UHD Graphics 630 (low power)
+2022-01-26 14:17:08.036 Unity[55783:3970004] Forcing user selected device: AMD Radeon Pro 5500M (high power)
 Initializing Metal device caps: AMD Radeon Pro 5500M
 Initialize mono
 Mono path[0] = '/Applications/Unity/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = '/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56207
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56783
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.043180 seconds.
+Registered in 0.002349 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 79.30 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 82.47 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.053 seconds
+- Completed reload, in  2.603 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003885 seconds.
+Registered in 0.008456 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 67.72 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 85.72 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.824 seconds
+- Completed reload, in  1.923 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
@@ -58,20 +58,20 @@ Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Ren
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Launching external process: /Applications/Unity/Unity.app/Contents/Tools/UnityShaderCompiler
 Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Refreshing native plugins compatible for Editor in 0.62 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2691 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 199.3 MB.
-System memory in use after: 196.6 MB.
+Unloading 3137 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 221.4 MB.
+System memory in use after: 218.9 MB.
 
-Unloading 55 unused Assets to reduce memory usage. Loaded Objects now: 3086.
-Total: 4.897323 ms (FindLiveObjects: 0.314355 ms CreateObjectMapping: 0.156093 ms MarkObjects: 2.436085 ms  DeleteObjects: 1.989759 ms)
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 3544.
+Total: 5.411401 ms (FindLiveObjects: 0.388789 ms CreateObjectMapping: 0.212687 ms MarkObjects: 2.821284 ms  DeleteObjects: 1.987411 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Readme.asset
-  artifactKey: Guid(83c2ed844a8c74b779a4c823d16594b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Readme.asset using Guid(83c2ed844a8c74b779a4c823d16594b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ffd2c44ffeb50c574abb5d0c4453328') in 0.204358 seconds
-  Import took 0.209927 seconds .
+  path: Assets/Prefabs/DoorBlock.prefab
+  artifactKey: Guid(fd5e45ca1e7994d6ea409ea664c5adf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DoorBlock.prefab using Guid(fd5e45ca1e7994d6ea409ea664c5adf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0b91e046c10acde5fdb774dbf6363c0') in 1.921637 seconds
+  Import took 1.928672 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

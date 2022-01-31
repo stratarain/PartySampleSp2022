@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1734686178869409899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 6730281007427596301}
   m_Father: {fileID: 0}
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 6730281007427596301}
-  openTimes: -1
+  initialState: 0
+  oneTime: 0
   transitionTime: 1
-  _opened: 0
+  openShift: {x: 0, y: -1.1, z: 0}
   _openedTimes: 0
-  _currentOperation: 0
-  _openShift: {x: 0, y: 0, z: 0}
+  _state: 0
   _openPosition: {x: 0, y: 0, z: 0}
   _closePosition: {x: 0, y: 0, z: 0}
 --- !u!65 &6730281007010702256
@@ -65,7 +65,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6730281007427596300
 GameObject:
@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 6730281007427596296}
   - component: {fileID: 6730281007427596303}
   - component: {fileID: 6730281007427596302}
+  - component: {fileID: 3147134674262371136}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -162,3 +163,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3147134674262371136
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730281007427596300}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0

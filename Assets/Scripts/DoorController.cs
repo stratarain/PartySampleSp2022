@@ -1,31 +1,30 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public sealed class DoorController : MonoBehaviour {
 
-	public enum DoorOperationType {
-		None,
+	public enum DoorState {
+		Close,
 		Open,
-		Close
+		Closing,
+		Opening
 	}
 
 	[Header("Setup")]
 	public Transform door;
-	public int openTimes = -1;
-	public float transitionTime = .5f;
-	public Vector3 openPosition;
-	public Vector3 closePosition;
+	public DoorState initialState;
+	public bool playerOnly = true;
+	public bool oneTime;
+	public float transitionTime = 2f;
+	public Vector3 openShift = new Vector3(.0f, -1.0f, .0f);
 
 	[Header("Runtime")]
 	[SerializeField]
-	private bool _opened;
-	[SerializeField]
 	private int _openedTimes;
 	[SerializeField]
-	private DoorOperationType _currentDoorOperation;
-	[SerializeField]
-	private Vector3 _openShift;
+	private DoorState _state;
 	[SerializeField]
 	private Vector3 _openPosition;
 	[SerializeField]
@@ -36,47 +35,54 @@ public sealed class DoorController : MonoBehaviour {
 	private void Awake() {
 		_operationTask = new CoroutineTask(this);
 		_closePosition = door.localPosition;
-	}
+		_openPosition = _closePosition + openShift;
 
-	public void Operate() {
-		if (_opened) Close();
-		else Open();
+		if (initialState == DoorState.Open) door.localPosition = _openPosition;
 	}
 
 	public void Open() {
-		if (openTimes > 0 && _openedTimes >= openTimes) return;
-		if (_opened && _currentDoorOperation == DoorOperationType.Close || !_opened && _currentDoorOperation != DoorOperationType.Open) {
-			openTimes++;
-			_currentDoorOperation = DoorOperationType.Open;
-			_openPosition = _closePosition + _openShift;
-			_operationTask.StartCoroutine(ExeOperationTask(_closePosition, _openPosition, true));
-		}
+		if (_state != DoorState.Close || (oneTime && _openedTimes > 0)) return;
+		Debug.Log("Door Open");
+		_state = DoorState.Opening;
+		_openedTimes += 1;
+		_operationTask.StartCoroutine(ExeOperationTask(_closePosition, _openPosition, DoorState.Close));
 	}
 
 	public void Close() {
-		if (!_opened && _currentDoorOperation == DoorOperationType.Open || _opened && _currentDoorOperation != DoorOperationType.Close) {
-			_currentDoorOperation = DoorOperationType.Close;
-			_openPosition = _closePosition + _openShift;
-			_operationTask.StartCoroutine(ExeOperationTask(_openPosition, _closePosition, false));
-		}
+		if (_state != DoorState.Open || oneTime) return;
+		Debug.Log("Door Close");
+		_state = DoorState.Closing;
+		_operationTask.StartCoroutine(ExeOperationTask(_openPosition, _closePosition, DoorState.Open));
 	}
 
-	private IEnumerator ExeOperationTask(Vector3 initialPosition, Vector3 targetPosition, bool opens) {
-		float progress = Mathf.Clamp01((door.localPosition.x - initialPosition.x) / (targetPosition.x - initialPosition.x));		
-		float initialTime = Time.time - transitionTime * progress;
-		while (progress < 1f) {
-			yield return null;
+	private IEnumerator ExeOperationTask(Vector3 initialPosition, Vector3 targetPosition, DoorState endState) {
+		float progress = .0f;	
+		float initialTime = Time.time;
+		while (progress <= 1.0f) {
+			yield return CoroutineTask.WaitForNextFrame;
 			progress = Mathf.Clamp01((Time.time - initialTime) / transitionTime);
 			door.localPosition = Vector3.Lerp(initialPosition, targetPosition, progress);
 		}
 
 		door.localPosition = targetPosition;
-		_opened = opens;
-		_currentDoorOperation = DoorOperationType.None;
+		_state = endState;
 		_operationTask.StopCoroutine();
 	}
 
-	private void OnTriggerEnter() => Open();
+	private void OnTriggerEnter(Collider other) {
+		if (other.gameObject.layer != LayerManager.CharacterLayer) return;
+		if (!playerOnly || other.CompareTag("Player")) Open();
+	}
 
-	private void OnTriggerExit() => Close();
+	private void OnTriggerExit(Collider other) {
+		if (other.gameObject.layer != LayerManager.CharacterLayer) return;
+		if (!playerOnly || other.CompareTag("Player")) Close();
+	}
+
+	private void OnDestroy() {
+		if (_operationTask != null) {
+			_operationTask.StopCoroutine();
+			_operationTask = null;
+		}
+	}
 }

@@ -37,7 +37,7 @@ MonoBehaviour:
   identifier: Door
   canBeStaticBatched: 0
   canFloorBeStaticBatched: 0
-  rotatesWithTile: 0
+  rotatesWithTile: 1
   floorRotatesWithTile: 0
   offset: {x: 0, y: 0.5, z: 0}
   floorOffset: {x: 0, y: 0, z: 0}
