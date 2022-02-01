@@ -42,7 +42,7 @@ public sealed class DoorController : MonoBehaviour {
 
 	public void Open() {
 		if (_state != DoorState.Close || (oneTime && _openedTimes > 0)) return;
-		Debug.Log("Door Open");
+		// Debug.Log("Door Open");
 		_state = DoorState.Opening;
 		_openedTimes += 1;
 		_operationTask.StartCoroutine(ExeOperationTask(_closePosition, _openPosition, DoorState.Close));
@@ -50,7 +50,7 @@ public sealed class DoorController : MonoBehaviour {
 
 	public void Close() {
 		if (_state != DoorState.Open || oneTime) return;
-		Debug.Log("Door Close");
+		// Debug.Log("Door Close");
 		_state = DoorState.Closing;
 		_operationTask.StartCoroutine(ExeOperationTask(_openPosition, _closePosition, DoorState.Open));
 	}

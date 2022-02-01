@@ -1,3 +1,4 @@
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,9 +8,12 @@ public class MapGenerator : MonoBehaviour {
 	public Tilemap tilemap;
 	public bool disableTilemapAtRuntime = true;
 	public bool fillFloor;
+	public bool fillSurrondingFloor;
 	public EditorTile defaultFloorTile;
 	public Transform staticRoot;
 	public Transform dynamicRoot;
+	public bool buildNavMesh = true;
+	public NavMeshSurface[] navMeshSurfaces;
 
 	[Header("Runtime")]
 	[SerializeField]
@@ -34,9 +38,11 @@ public class MapGenerator : MonoBehaviour {
 				Vector3Int pos = new Vector3Int(i, j, 0) + origin;
 
 				EditorTile tile = null;
+				bool hasTile = false;
 				bool hasFloorBlock = false;
 				
 				if (tilemap.HasTile(pos)) {
+					hasTile = true;
 					tile = tilemap.GetTile<EditorTile>(pos);
 					if (tile.block) {
 						GameObject block = Instantiate(tile.block, tile.canBeStaticBatched ? staticRoot : dynamicRoot);
@@ -49,7 +55,7 @@ public class MapGenerator : MonoBehaviour {
 					hasFloorBlock = tile.floorBlock;
 				}
 
-				EditorTile floorTile = fillFloor ? defaultFloorTile : null;
+				EditorTile floorTile = fillFloor ? (fillSurrondingFloor || hasTile ? defaultFloorTile : null) : null;
 				floorTile = hasFloorBlock ? tile : floorTile;
 				
 				if (floorTile && floorTile.floorBlock) {
@@ -62,8 +68,12 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 		
-		StaticBatchingUtility.Combine(staticRoot.gameObject);
+		// StaticBatchingUtility.Combine(staticRoot.gameObject);
 		
 		if (disableTilemapAtRuntime) tilemap.gameObject.SetActive(false);
+
+		if (buildNavMesh && navMeshSurfaces != null) {
+			foreach (var surface in navMeshSurfaces) surface.BuildNavMesh();
+		}
 	}
 }

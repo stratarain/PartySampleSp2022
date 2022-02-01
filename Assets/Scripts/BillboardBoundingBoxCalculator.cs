@@ -11,7 +11,7 @@ public sealed class BillboardBoundingBoxCalculator : MonoBehaviour {
 		InitBoundingBox();
 	}
 
-	private void InitBoundingBox() {
+	public void InitBoundingBox() {
 		Mesh mesh = _meshFilter.mesh;
 		Bounds bounds = _renderer.bounds;
 		Vector3 extents = bounds.extents;
