@@ -7,9 +7,10 @@ public class NavAgentTest : MonoBehaviour {
     [Header("Setup")]
     public NavMeshAgent agent;
     public Transform target;
+    public Vector3 offset;
     public float updateInterval = 1.0f;
     public bool autoUpdatePosition = true;
-    public bool autoUpdateRotation = true;
+    public bool autoUpdateRotation;
 
     [Header("Runtime")]
     [SerializeField]
@@ -28,12 +29,9 @@ public class NavAgentTest : MonoBehaviour {
         var time = Time.time;
         if (_lastUpdate < .0f || time - _lastUpdate >= updateInterval) {
             _lastUpdate = time;
-            var r = agent.SetDestination(transform.position);
-            // agent.destination = transform.position;
-            print("R: " + r);
+            var pos = target.position;
+            agent.SetDestination(pos + offset);
         }
-        
-        print(agent.nextPosition.ToString("F3"));
     }
 
     private void OnValidate() {

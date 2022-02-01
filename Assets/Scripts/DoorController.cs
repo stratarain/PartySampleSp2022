@@ -67,6 +67,8 @@ public sealed class DoorController : MonoBehaviour {
 		door.localPosition = targetPosition;
 		_state = endState;
 		_operationTask.StopCoroutine();
+		
+		// if (oneTime && endState == DoorState.Close) gameObject.SetActive(false);
 	}
 
 	private void OnTriggerEnter(Collider other) {
