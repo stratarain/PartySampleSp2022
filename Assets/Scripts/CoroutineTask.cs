@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CoroutineTask {
 
 	public static readonly YieldInstruction WaitForNextFrame = new YieldInstruction();
 
 	public readonly MonoBehaviour monoBehaviour;
-	public CoroutineTaskType coroutineTaskType;
+	public CoroutineTaskType coroutineTaskType = CoroutineTaskType.Overwrite;
 
 	public bool HasCoroutine => _coroutine != null;
 	
@@ -49,6 +50,11 @@ public class CoroutineTask {
 	public void StopCoroutine() {
 		if (monoBehaviour && HasCoroutine) monoBehaviour.StopCoroutine(_coroutine);
 		_coroutine = null;
+	}
+	
+	public static IEnumerator TriggerEventDelayed(WaitForSeconds wait, UnityEvent toTrigger) {
+		yield return wait;
+		toTrigger?.Invoke();
 	}
 }
 

@@ -15,7 +15,6 @@ public sealed class DoorController : MonoBehaviour {
 	[Header("Setup")]
 	public Transform door;
 	public DoorState initialState;
-	public bool playerOnly = true;
 	public bool oneTime;
 	public float transitionTime = 2f;
 	public Vector3 openShift = new Vector3(.0f, -1.0f, .0f);
@@ -26,6 +25,10 @@ public sealed class DoorController : MonoBehaviour {
 	[SerializeField]
 	private DoorState _state;
 	[SerializeField]
+	private bool _openBuffer;
+	[SerializeField]
+	private bool _closeBuffer;
+	[SerializeField]
 	private Vector3 _openPosition;
 	[SerializeField]
 	private Vector3 _closePosition;
@@ -34,31 +37,36 @@ public sealed class DoorController : MonoBehaviour {
 
 	private void Awake() {
 		_operationTask = new CoroutineTask(this);
+		_state = initialState;
 		_closePosition = door.localPosition;
 		_openPosition = _closePosition + openShift;
-
+		
 		if (initialState == DoorState.Open) door.localPosition = _openPosition;
 	}
 
 	public void Open() {
-		if (_state != DoorState.Close || (oneTime && _openedTimes > 0)) return;
+		if (oneTime && _openedTimes > 0) return;
+		if (_state == DoorState.Closing) _openBuffer = true;
+		if (_state != DoorState.Close) return; 
 		// Debug.Log("Door Open");
 		_state = DoorState.Opening;
 		_openedTimes += 1;
-		_operationTask.StartCoroutine(ExeOperationTask(_closePosition, _openPosition, DoorState.Close));
+		_operationTask.StartCoroutine(ExeOperationTask(_closePosition, _openPosition, DoorState.Open));
 	}
 
 	public void Close() {
-		if (_state != DoorState.Open || oneTime) return;
+		if (oneTime) return;
+		if (_state == DoorState.Opening) _closeBuffer = true;
+		if (_state != DoorState.Open) return; 
 		// Debug.Log("Door Close");
 		_state = DoorState.Closing;
-		_operationTask.StartCoroutine(ExeOperationTask(_openPosition, _closePosition, DoorState.Open));
+		_operationTask.StartCoroutine(ExeOperationTask(_openPosition, _closePosition, DoorState.Close));
 	}
 
 	private IEnumerator ExeOperationTask(Vector3 initialPosition, Vector3 targetPosition, DoorState endState) {
 		float progress = .0f;	
 		float initialTime = Time.time;
-		while (progress <= 1.0f) {
+		while (progress < 1.0f) {
 			yield return CoroutineTask.WaitForNextFrame;
 			progress = Mathf.Clamp01((Time.time - initialTime) / transitionTime);
 			door.localPosition = Vector3.Lerp(initialPosition, targetPosition, progress);
@@ -66,19 +74,16 @@ public sealed class DoorController : MonoBehaviour {
 
 		door.localPosition = targetPosition;
 		_state = endState;
-		_operationTask.StopCoroutine();
 		
 		// if (oneTime && endState == DoorState.Close) gameObject.SetActive(false);
-	}
 
-	private void OnTriggerEnter(Collider other) {
-		if (other.gameObject.layer != LayerManager.CharacterLayer) return;
-		if (!playerOnly || other.CompareTag("Player")) Open();
-	}
-
-	private void OnTriggerExit(Collider other) {
-		if (other.gameObject.layer != LayerManager.CharacterLayer) return;
-		if (!playerOnly || other.CompareTag("Player")) Close();
+		if (_state == DoorState.Close && _openBuffer) {
+			_openBuffer = false;
+			Open();
+		} else if (_state == DoorState.Open && _closeBuffer) {
+			_closeBuffer = false;
+			Close();
+		}
 	}
 
 	private void OnDestroy() {

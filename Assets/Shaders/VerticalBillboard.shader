@@ -4,6 +4,7 @@ Shader "Custom/VerticalBillboard" {
         _Tint ("Tint", Color) = (1, 1, 1, 1)
         _Additive ("Additive", Color) = (0, 0, 0, 0)
         _Cutoff ("Alpha Cutoff", Range(0, 1)) = 0.1
+        _ScaleXY ("Scale XY", Vector) = (1, 1, 0, 0)
     }
     SubShader {
         
@@ -41,16 +42,32 @@ Shader "Custom/VerticalBillboard" {
             float3 _Tint;
             float3 _Additive;
             float _Cutoff;
+            float2 _ScaleXY;
 
             v2f vert (appdata v) {
                 v2f o;
-                float3 viewPos = UnityObjectToViewPos(float3(0, 0, 0));
-                float3 scaleRotatePos = mul((float3x3)unity_ObjectToWorld, v.vertex);                
+
+                float4x4 matrix_M_noRot = unity_ObjectToWorld;
+                matrix_M_noRot[0][0] = 1;
+                matrix_M_noRot[0][1] = 0;
+                matrix_M_noRot[0][2] = 0;
+ 
+                matrix_M_noRot[1][0] = 0;
+                matrix_M_noRot[1][1] = 1;
+                matrix_M_noRot[1][2] = 0;
+ 
+                matrix_M_noRot[2][0] = 0;
+                matrix_M_noRot[2][1] = 0;
+                matrix_M_noRot[2][2] = 1;
+                
+                float3 scaleRotatePos = mul((float3x3) matrix_M_noRot, v.vertex.xyz * float3(_ScaleXY.x, _ScaleXY.y, 0));                
                 float3x3 ViewRotateY = float3x3(
                     1, UNITY_MATRIX_V._m01, 0,
                     0, UNITY_MATRIX_V._m11, 0,
                     0, UNITY_MATRIX_V._m21, -1
                 );
+                
+                float3 viewPos = UnityObjectToViewPos(float3(0, 0, 0));
                 viewPos += mul(ViewRotateY, scaleRotatePos);
                 o.vertex = mul(UNITY_MATRIX_P, float4(viewPos, 1));
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
